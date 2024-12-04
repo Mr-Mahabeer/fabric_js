@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable=no">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.13.216/build/pdf.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.13.216/build/pdf.worker.js"></script>
+	<script src="https://unpkg.com/pdf-lib@1.17.1"></script>
+	<script src="https://unpkg.com/downloadjs@1.4.7"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.js"
+		integrity="sha512-hOJ0mwaJavqi11j0XoBN1PtOJ3ykPdP6lp9n29WVVVVZxgx9LO7kMwyyhaznGJ+kbZrDN1jFZMt2G9bxkOHWFQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body id="body">
+	<button id="upload-button"
+		data-tippy-content="Load any PDF from file to render base, text and annotation layers using pdf.js, in addition to a fabric.js based external annotation layer">Select
+		PDF</button>
+	<input type="file" id="file-to-upload" accept="application/pdf" />
+
+	<div id="pdf-main-container">
+		<div id="pdf-loader">Loading document ...</div>
+
+		<div id="pdf-contents">
+			<div id="pdf-meta">
+				<div class="pdf-buttons">
+					<div id="page-count-container">Page
+						<div id="pdf-current-page"></div> of
+						<div id="pdf-total-pages"></div>
+					</div>
+					<span id="spacer" style="padding-left: 10px;"></span>
+					<button id="pdf-prev" data-tippy-content="Previous PDF page">Previous page</button>
+					<button id="pdf-next" data-tippy-content="Next PDF page">Next page</button>
+					<button id="first-page-button" data-tippy-content="First PDF page">First page</button>
+					<span id="spacer" style="padding-left: 10px;"></span>
+					<button id="new-upload-button"
+						data-tippy-content="Load another PDF from file to render base, text and annotation layers using pdf.js, in addition to a fabric.js based external annotation layer. WARNING - You will lose your unsaved annotations">Select
+						PDF</button>
+					<span id="spacer" style="padding-left: 10px;"></span>
+					<button id="save-pdf-button"
+						data-tippy-content="Save as PDF, including the PDF-Lib annotations, but not including the Fabric.js annotations">Save
+						as PDF</button>
+				</div>
+				<div class="pdf-buttons">
+					<button id="annotate-pdf-button"
+						data-tippy-content="Auto-generate PDF-lib based text annotation and re-render PDF">PDF-Lib
+						Annotation</button>
+					<button id="add-circle-button"
+						data-tippy-content="Add adjustable circle annotation onto the Fabric.js annotations layer, with aspect retained scaling, custom duplicate/delete controls, and hover animation">Add
+						Circle</button>
+
+					<button id="add-text-button"
+						data-tippy-content="Add adjustable free text annotation onto the Fabric.js annotations layer, with aspect retained scaling, custom duplicate/delete controls, and hover animation">Add
+						Text</button>
+					<span id="spacer" style="padding-left: 10px;"></span>
+					<button id="highlight-mode-button" class=""
+						data-tippy-content="Toggle Text Highlight mode, to add one or more highlighted text annotation, selected from the PDF text layer, onto the Fabric.js annotations layer">Highlight</button>
+					<button id="remove-mode-button" class=""
+						data-tippy-content="Toggle Remove Annotations mode, to remove one or more annotations from the Fabric.js annotations layer, with hover animation and eraser canvas pointer">Remove</button>
+				</div>
+
+			</div>
+			<div style="color: white;display: flex;flex-direction: row;">
+				<span style="color:black">Markings: </span>
+				<button onclick="addCircleAnnotation(1)"
+					style="height: 40px;width: 40px;border-radius: 1000px;background-color: blue;">1
+				</button>
+				<button onclick="addCircleAnnotation(2)"
+					style="height: 40px;width: 40px;border-radius: 1000px;background-color: blue;">2
+				</button>
+				<button onclick="addCircleAnnotation(2)"
+					style="height: 40px;width: 40px;border-radius: 1000px;background-color: blue;">3
+				</button>
+
+
+			</div>
+			<div style="color: white;display: flex;flex-direction: row;">
+				<span style="color:black">Annotations: </span>
+				<button onclick="addCross()">❌
+				</button>
+				<button onclick="addCheck()">✅
+				</button>
+
+
+
+			</div>
+			<canvas id="pdf-canvas" width="800"></canvas>
+			<div id="text-layer" class="textLayer"></div>
+			<div id="annotation-layer"></div>
+			<div id="page-loader">Loading page ...</div>
+		</div>
+		<div id="canvasContainer">
+			<canvas id="fabricCanvas"></canvas>
+		</div>
+	</div>
+	<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+	<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+	<script>
+		tippy('[data-tippy-content]');
+	</script>
+	<script src="script.js"></script>
+
+</body>
+
+</html>

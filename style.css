@@ -1,0 +1,204 @@
+#upload-button {
+	width: 150px;
+	display: block;
+	margin: 20px auto;
+}
+
+#file-to-upload {
+	display: none;
+}
+
+#pdf-main-container {
+	width: 800px;
+	margin: 20px auto;
+}
+
+#pdf-loader {
+	display: none;
+	text-align: center;
+	color: #999999;
+	font-size: 13px;
+	line-height: 100px;
+	height: 100px;
+}
+
+#pdf-contents {
+	display: none;
+}
+
+#pdf-meta {
+	overflow: hidden;
+	margin: 0 0 20px 0;
+}
+
+.pdf-buttons {
+	float: left;
+	margin-bottom: 5px;
+}
+
+#page-count-container {
+	float: left;
+}
+
+#pdf-current-page {
+	display: inline;
+}
+
+#pdf-total-pages {
+	display: inline;
+}
+
+#pdf-canvas {
+	border: 1px solid rgba(0,0,0,0.2);
+	box-sizing: border-box;
+}
+
+#page-loader {
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	display: none;
+	color: #999999;
+	font-size: 13px;
+}
+
+.canvas-container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+}
+
+#annotation-layer { 
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+	opacity: 0.2;
+	line-height: 1.0;
+}
+
+#annotation-layer > section {
+	color: transparent;
+	position: absolute;
+	white-space: pre;
+	cursor: text;
+	transform-origin: 0% 0%;
+}
+
+#annotation-layer > .linkAnnotation > a {
+	position: absolute;
+    font-size: 1em;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.textLayer {
+  position: absolute;
+  text-align: initial;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  opacity: 0.2;
+  line-height: 1;
+  -webkit-text-size-adjust: none;
+     -moz-text-size-adjust: none;
+          text-size-adjust: none;
+  forced-color-adjust: none;
+  z-index: 1;  
+}
+
+.textLayer span,
+.textLayer br {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+}
+
+/* Only necessary in Google Chrome, see issue 14205, and most unfortunately
+ * the problem doesn't show up in "text" reference tests. */
+.textLayer span.markedContent {
+  top: 0;
+  height: 0;
+}
+
+.textLayer .highlight {
+  margin: -1px;
+  padding: 1px;
+  background-color: rgba(180, 0, 170, 1);
+  border-radius: 4px;
+}
+
+.textLayer .highlight.appended {
+  position: initial;
+}
+
+.textLayer .highlight.begin {
+  border-radius: 4px 0 0 4px;
+}
+
+.textLayer .highlight.end {
+  border-radius: 0 4px 4px 0;
+}
+
+.textLayer .highlight.middle {
+  border-radius: 0;
+}
+
+.textLayer .highlight.selected {
+  background-color: rgba(0, 100, 0, 1);
+}
+
+.textLayer ::-moz-selection {
+  background: rgba(0, 0, 255, 1);
+}
+
+.textLayer ::selection {
+  background: rgba(0, 0, 255, 1);
+}
+
+.active_button {
+	background-color: #4CAF50;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition-duration: 0.2s;
+}
+
+/* Avoids https://github.com/mozilla/pdf.js/issues/13840 in Chrome */
+.textLayer br::-moz-selection {
+  background: transparent;
+}
+.textLayer br::selection {
+  background: transparent;
+}
+
+.textLayer .endOfContent {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  cursor: default;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.textLayer .endOfContent.active {
+  top: 0;
+}
